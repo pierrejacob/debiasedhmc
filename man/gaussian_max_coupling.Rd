@@ -6,7 +6,16 @@
 \usage{
 gaussian_max_coupling(mu1, mu2, Sigma1, Sigma2)
 }
+\arguments{
+\item{mu1}{mean of first distribution}
+
+\item{mu2}{mean of second distribution}
+
+\item{Sigma1}{Variance of first distribution}
+
+\item{Sigma2}{Variance of second distribution}
+}
 \description{
-sample from maximal coupling of two multivariate Normal distributions,
-specified through their means and covariance matrices
+Sample from maximal coupling of two multivariate Normal distributions,
+specified through their means and covariance matrices.
 }

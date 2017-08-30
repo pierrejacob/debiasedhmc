@@ -1,3 +1,15 @@
+#'@rdname get_mh_kernel
+#'@title Get random walk Metropolis-Hastings kernels
+#'@description This function takes descriptions of the target
+#' and tuning parameters, and returns a list containing the keys
+#' \code{single_kernel}, \code{coupled_kernel} corresponding to marginal
+#' and coupled MH kernels, with Normal random walks.
+#' These kernels can then be used in the function \code{\link{coupled_chains}}.
+#'@param logtarget function to compute target log-density, e.g. see \code{\link{get_mvnormal}}
+#'@param Sigma_proposal variance of the Normal random walk for the proposals
+#'@param dimension dimension of the target distribution
+#'@return A list containing the keys
+#' \code{single_kernel}, \code{coupled_kernel}.
 #'@export
 get_mh_kernel <- function(logtarget, Sigma_proposal, dimension){
   Sigma1_chol <- chol(Sigma_proposal)

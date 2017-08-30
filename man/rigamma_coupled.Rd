@@ -7,7 +7,8 @@
 rigamma_coupled(alpha1, alpha2, beta1, beta2)
 }
 \description{
-with given parameters alpha1, alpha2, beta1, beta2,
-where the parametrization is that the log-density of IG(alpha, beta) is
+Sample from maximally coupled inverse gamma with given parameters alpha1, alpha2, beta1, beta2,
+where the parametrization is that the log-density of IG(alpha, beta) at x is
+
 alpha * log(beta) - lgamma(alpha) - (alpha+1) * log(x) - beta / x
 }

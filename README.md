@@ -6,5 +6,5 @@ The truncated multivariate Normal sampler is taken from the package 'tmg' on CRA
 https://cran.r-project.org/package=tmg
 
 The folder inst/ contains README.R which explains how to run the scripts in inst/reproduce/.
-The folder inst/tutorials/ contains (or will contain) tutorials on
+The folder inst/tutorials/ contains tutorials on
 how to use the package's main functions.

@@ -6,7 +6,16 @@
 \usage{
 rnorm_max_coupling(mu1, mu2, sigma1, sigma2)
 }
+\arguments{
+\item{mu1}{mean of first distribution}
+
+\item{mu2}{mean of second distribution}
+
+\item{sigma1}{standard deviation of first distribution}
+
+\item{sigma2}{standard deviation of second distribution}
+}
 \description{
-sample from maximal coupling of two univariate Normal distributions,
-specified through their means and standard deviations
+Sample from maximal coupling of two univariate Normal distributions,
+specified through their means and standard deviations.
 }

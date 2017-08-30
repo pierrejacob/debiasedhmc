@@ -1,3 +1,17 @@
+#'@rdname get_hmc_kernel
+#'@title Get Hamiltonian Monte Carlo kernels
+#'@description This function takes descriptions of the target
+#' and tuning parameters, and returns a list containing the keys
+#' \code{single_kernel}, \code{coupled_kernel} corresponding to marginal
+#' and coupled HMC kernels. These kernels can then be used in the function \code{\link{coupled_chains}}.
+#'
+#'@param logtarget function to compute target log-density, e.g. see \code{\link{get_mvnormal}}
+#'@param gradlogtarget function to compute gradient of target log-density, e.g. see \code{\link{get_mvnormal}}
+#'@param stepsize step size in the leap-frog integrator
+#'@param nsteps number of leap-frog steps
+#'@param dimension dimension of the target distribution
+#'@return A list containing the keys
+#' \code{single_kernel}, \code{coupled_kernel}.
 #'@export
 get_hmc_kernel <- function(logtarget, gradlogtarget, stepsize, nsteps, dimension){
   # leap frog integrator

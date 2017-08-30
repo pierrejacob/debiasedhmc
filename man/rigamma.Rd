@@ -10,7 +10,9 @@ rigamma(n, alpha, beta)
 rinvgaussian(n, mu, lambda)
 }
 \description{
-with given parameters alpha, beta, with log-density given by
+Sample from inverse gamma with given parameters alpha, beta,
+with log-density at x given by
+
 alpha * log(beta) - lgamma(alpha) - (alpha+1) * log(x) - beta / x
 
 with given parameters mu, lambda, with log-density given by

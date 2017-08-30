@@ -6,8 +6,18 @@
 \usage{
 rgamma_coupled(alpha1, alpha2, beta1, beta2)
 }
+\arguments{
+\item{alpha1}{shape parameter of first distribution}
+
+\item{alpha2}{shape parameter of second distribution}
+
+\item{beta1}{rate parameter of first distribution}
+
+\item{beta2}{rate parameter of second distribution}
+}
 \description{
-with given parameters alpha1, alpha2, beta1, beta2,
-where the parametrization is that beta is the rate, i.e.
+Sample from maximally coupled Gamma distributions with given parameters alpha1, alpha2, beta1, beta2,
+where alpha is the shape and beta the rate, i.e. the log-density at x is
+
 alpha * log(beta) - lgamma(alpha) + (alpha-1) * log(x) - beta x
 }

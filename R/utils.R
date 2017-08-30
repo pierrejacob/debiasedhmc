@@ -7,11 +7,13 @@
 #'@title fast_dmvnorm
 #'@description fast_dmvnorm
 #'@export
-
 fast_dmvnorm <- function(x, mean, covariance){
   return(dmvnorm(x, mean, covariance))
 }
 
+#'@rdname fast_dmvnorm_chol_inverse
+#'@title fast_dmvnorm_chol_inverse
+#'@description fast_dmvnorm_chol_inverse
 #'@export
 fast_dmvnorm_chol_inverse <- function(x, mean, chol_inverse){
   return(dmvnorm_cholesky_inverse(x, mean, chol_inverse))
@@ -23,11 +25,13 @@ fast_dmvnorm_chol_inverse <- function(x, mean, chol_inverse){
 #'@title fast_rmvnorm
 #'@description fast_rmvnorm
 #'@export
-
 fast_rmvnorm <- function(nparticles, mean, covariance){
   return(rmvnorm(nparticles, mean, covariance))
 }
 
+#'@rdname fast_rmvnorm_chol
+#'@title fast_rmvnorm_chol
+#'@description fast_rmvnorm_chol
 #'@export
 fast_rmvnorm_chol <- function(nparticles, mean, chol){
   return(rmvnorm_cholesky(nparticles, mean, chol))
@@ -39,7 +43,6 @@ fast_rmvnorm_chol <- function(nparticles, mean, chol){
 #'@title expit
 #'@description expit function
 #'@export
-
 expit <- function(z) 1 / (1 + exp(-z))
 
 # from util_setmytheme ----------------------------------------------------

@@ -2,11 +2,13 @@
 % Please edit documentation in R/invgamma_couplings.R
 \name{digamma}
 \alias{digamma}
-\title{compute log-density of inverse gamma}
+\title{Compute log-density of inverse gamma}
 \usage{
 digamma(x, alpha, beta)
 }
 \description{
-at x > 0 and with given parameters alpha, beta, given by
+Compute log-density of inverse gamma at x > 0
+and with given parameters alpha, beta, given by
+
  alpha * log(beta) - lgamma(alpha) - (alpha+1) * log(x) - beta / x
 }

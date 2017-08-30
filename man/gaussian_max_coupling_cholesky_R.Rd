@@ -7,8 +7,21 @@
 gaussian_max_coupling_cholesky_R(mu1, mu2, Cholesky1, Cholesky2,
   Cholesky_inverse1, Cholesky_inverse2)
 }
+\arguments{
+\item{mu1}{mean of first distribution}
+
+\item{mu2}{mean of second distribution}
+
+\item{Cholesky1}{Cholesky factor of variance of first distribution}
+
+\item{Cholesky2}{Cholesky factor of variance of second distribution}
+
+\item{Cholesky_inverse1}{Cholesky factor of precision of first distribution}
+
+\item{Cholesky_inverse2}{Cholesky factor of precision of second distribution}
+}
 \description{
-sample from maximal coupling of two multivariate Normal distributions,
+Sample from maximal coupling of two multivariate Normal distributions,
 specified through their means, the Cholesky factors of their covariance matrices,
-and the Cholesky factors of the inverse covariance matrices (i.e. the precision matrices)
+and the Cholesky factors of the inverse covariance matrices (i.e. the precision matrices).
 }

@@ -1,8 +1,14 @@
 #'@rdname rgamma_coupled
 #'@title Sample from maximally coupled Gamma
-#'@description with given parameters alpha1, alpha2, beta1, beta2,
-#'where the parametrization is that beta is the rate, i.e.
+#'@description Sample from maximally coupled Gamma distributions with given parameters alpha1, alpha2, beta1, beta2,
+#'where alpha is the shape and beta the rate, i.e. the log-density at x is
+#'
 #' alpha * log(beta) - lgamma(alpha) + (alpha-1) * log(x) - beta x
+#'
+#'@param alpha1 shape parameter of first distribution
+#'@param alpha2 shape parameter of second distribution
+#'@param beta1 rate parameter of first distribution
+#'@param beta2 rate parameter of second distribution
 #'@export
 rgamma_coupled <- function(alpha1, alpha2, beta1, beta2){
   x <- rgamma(1, alpha1, rate = beta1)
