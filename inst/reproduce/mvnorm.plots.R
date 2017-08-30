@@ -19,12 +19,12 @@ load(file = "mvnorm.hmctuning.RData")
 
 library(latex2exp)
 g <- ggplot(fixednsteps.mcmc.df, aes(x = effectiveTime, y = mcmcvar)) + geom_point() + scale_y_log10()
-g <- g + scale_x_continuous(breaks = effectiveTimes, labels = c(TeX("$\\pi/4$"), TeX("$4 \\pi/4$"),
+g <- g + scale_x_continuous(breaks = effectiveTimes, labels = c(TeX("$\\pi/4$"), TeX("$2 \\pi/4$"),
                                                                 TeX("$3\\pi/4$"), TeX("$4 \\pi/4$"),
                                                                 TeX("$5\\pi/4$"), TeX("$6\\pi/4$")))
 g <- g + ylab("HCMC variance") + xlab("trajectory length")
 g
-ggsave(filename = "mvnorm.hmcvariance.trajectorylength.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "mvnorm.hmcvariance.trajectorylength.pdf", plot = g, width = 9, height = 6)
 
 # from this we can identify the best trajectory length, i.e. the one that leads to highest efficiency of HMC
 
@@ -36,13 +36,13 @@ distance.df %>% head
 
 g <- ggplot(distance.df, aes(x = effectiveTime, y = distance)) + geom_point()
 g <- g + scale_y_log10(breaks = c(1e-20, 1e-15, 1e-10, 1e-5, 1), limits = c(1e-20, 10))
-g <- g + scale_x_continuous(breaks = originaleffectiveTimes, labels = c(TeX("$\\pi/4$"), TeX("$4 \\pi/4$"),
+g <- g + scale_x_continuous(breaks = originaleffectiveTimes, labels = c(TeX("$\\pi/4$"), TeX("$2 \\pi/4$"),
                                                                 TeX("$3\\pi/4$"), TeX("$4 \\pi/4$"),
                                                                 TeX("$5\\pi/4$"), TeX("$6\\pi/4$")))
 
 g <- g + ylab("distance after 100 iterations") + xlab("trajectory length")
 g
-ggsave(filename = "mvnorm.distance100iter.trajectorylength.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "mvnorm.distance100iter.trajectorylength.pdf", plot = g, width = 9, height = 6)
 
 # We see that we obtain the contraction over a range of values that does
 # not include the best values obtained for HMC.
@@ -73,7 +73,7 @@ names(dist.df) <- c("iteration", "rep", "value")
 g <- ggplot(dist.df, aes(x = iteration, y = value, group = rep)) + geom_line(alpha = 0.25)
 g <- g + xlab('iteration') + ylab('logarithm of distance') + ylim(-45, 5)
 g
-ggsave(filename = "mvnorm.distancetraces.png", plot = g, width = 7, height = 6)
+ggsave(filename = "mvnorm.distancetraces.png", plot = g, width = 9, height = 6)
 ##
 
 load(file = "mvnorm.withMH.cchains.RData")
@@ -92,7 +92,7 @@ names(dist.df) <- c("iteration", "rep", "value")
 g <- ggplot(dist.df, aes(x = iteration, y = value, group = rep)) + geom_line(alpha = 0.25)
 g <- g + xlab('iteration') + ylab('logarithm of distance') + ylim(-45, 5)
 g
-ggsave(filename = "mvnorm.distancetraces.withMH.png", plot = g, width = 7, height = 6)
+ggsave(filename = "mvnorm.distancetraces.withMH.png", plot = g, width = 9, height = 6)
 
 
 ### now compute efficiency

@@ -18,9 +18,7 @@
 # folders
 scriptfolder <- "~/path to debiasedhmc/inst/reproduce"
 resultsfolder <- "~/path to a folder where large RData files will be created"
-
 #
-setwd(resultsfolder)
 
 ### Multivariate Normal example (might take a few hours, creates ~ 500 Mb of files)
 # run

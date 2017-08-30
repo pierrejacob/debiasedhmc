@@ -56,14 +56,14 @@ g <- ggplot(mcmcvar.df, aes(x = effectiveTimes, y = mcmcvar, group = irep)) + ge
 g <- g + ylim(0, 0.5)
 g <- g + ylab("HCMC variance") + xlab("trajectory length")
 g
-ggsave(filename = "germancredit.hmcvariance.trajectorylength.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.hmcvariance.trajectorylength.pdf", plot = g, width = 9, height = 6)
 
 load(file = "germancredit.contraction.RData")
 g <- ggplot(distance.df %>% filter(distance > 1e-30), aes(x = effectiveTime, y = distance)) + geom_point()
 g <- g + scale_y_log10(breaks = c(1e-20, 1e-15, 1e-10, 1e-5, 1), limits = c(1e-20, 10))
 g <- g + ylab("distance after 1000 iterations") + xlab("trajectory length")
 g
-ggsave(filename = "germancredit.distance100iter.trajectorylength.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.distance100iter.trajectorylength.pdf", plot = g, width = 9, height = 6)
 
 distance_ <- function(cchain){
   nsteps <- nrow(cchain$samples1) - 1
@@ -89,7 +89,7 @@ names(dist.df) <- c("iteration", "rep", "value")
 g <- ggplot(dist.df, aes(x = iteration, y = value, group = rep)) + geom_line(alpha = 0.25)
 g <- g + xlab('iteration') + ylab('logarithm of distance') + ylim(-20, 5)
 g
-ggsave(filename = "germancredit.distancetraces.png", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.distancetraces.png", plot = g, width = 9, height = 6)
 
 
 load(file = "germancredit.withMH.cchains.betterinit.RData")
@@ -111,7 +111,7 @@ names(dist.df) <- c("iteration", "rep", "value")
 g <- ggplot(dist.df, aes(x = iteration, y = value, group = rep)) + geom_line(alpha = 0.25)
 g <- g + xlab('iteration') + ylab('logarithm of distance') + ylim(-20, 5)
 g
-ggsave(filename = "germancredit.distancetraces.betterinit.png", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.distancetraces.betterinit.png", plot = g, width = 9, height = 6)
 
 ### now, compute efficiencies, using larger number of repeats
 # (takes a long time, around 1 minute, to load)
@@ -162,7 +162,7 @@ g <- plot_histogram(hist1)
 g <- g + geom_line(data = histhmc.df, colour = "red", aes(x = x, y = y, xmin = NULL, xmax = NULL, ymin = NULL, ymax = NULL, xend = NULL, yend = NULL))
 g <- g + xlab(expression(alpha))
 g
-ggsave(filename = "germancredit.histogram1.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.histogram1.pdf", plot = g, width = 9, height = 6)
 
 
 hist2 <- histogram_c_chains(cchains.1000, 2, k, K, nclass = nclass)
@@ -172,5 +172,5 @@ g <- plot_histogram(hist2)
 g <- g + geom_line(data = histhmc.df, colour = "red", aes(x = x, y = y, xmin = NULL, xmax = NULL, ymin = NULL, ymax = NULL, xend = NULL, yend = NULL))
 g <- g + xlab(expression(beta[1]))
 g
-ggsave(filename = "germancredit.histogram2.pdf", plot = g, width = 7, height = 6)
+ggsave(filename = "germancredit.histogram2.pdf", plot = g, width = 9, height = 6)
 

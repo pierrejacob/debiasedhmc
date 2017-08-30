@@ -162,14 +162,14 @@ mixture_coupled_kernel <- function(chain_state1, chain_state2, iter){
 }
 
 
-# nrep <- 100
-# max_iterations <- 1000
-# K <- 1000
-# cchains <- foreach(irep = 1:nrep) %dorng% {
-#   coupled_chains(mixture_kernel, mixture_coupled_kernel, rinit, K = K, max_iterations = max_iterations)
-# }
-# save(K, max_iterations, nrep, effectiveTime, nsteps, stepsize, cchains, file = "germancredit.withMH.cchains.betterinit.RData")
-# load(file = "germancredit.withMH.cchains.betterinit.RData")
+nrep <- 100
+max_iterations <- 1000
+K <- 1000
+cchains <- foreach(irep = 1:nrep) %dorng% {
+  coupled_chains(mixture_kernel, mixture_coupled_kernel, rinit, K = K, max_iterations = max_iterations)
+}
+save(K, max_iterations, nrep, effectiveTime, nsteps, stepsize, cchains, file = "germancredit.withMH.cchains.betterinit.RData")
+load(file = "germancredit.withMH.cchains.betterinit.RData")
 
 nrep <- 1000
 K <- 1000
