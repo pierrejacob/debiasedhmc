@@ -4,12 +4,12 @@
 \alias{H_bar}
 \title{Compute unbiased estimators from coupled chains}
 \usage{
-H_bar(c_chains, h = function(x) x, k = 0, K = 1)
+H_bar(c_chains, h = function(x) x, k = 0, m = 1)
 }
 \description{
 Compute the proposed unbiased estimators, for each of the element
 in the list 'c_chains'. The integral of interest is that of the function h,
 which can be multivariate. The estimator uses the variance reduction technique
-whereby the estimator is the MCMC average between times k and K, with probability
+whereby the estimator is the MCMC average between times k and m, with probability
 going to one as k increases.
 }

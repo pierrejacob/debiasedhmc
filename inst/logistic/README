@@ -1,0 +1,20 @@
+This folder has scripts that implements logistic regression on the German credit
+dataset, as considered in Hoffman & Gelman (2014)
+
+First run model.R to load the dataset and relevant functions, which will be saved
+in this folder as germancredit.RData
+
+Next use the script hmc.repeats.R to compute as many replicates of the proposed
+unbiased estimator as desired, for example by running many instances of this
+script on a compute cluster, and saves the results in the output/ folder as
+RData files
+
+See Heng and Jacob (2017) for details on the selection of algorithmic parameters
+employed in hmc.repeats.R
+
+Run optimal.hmc.R to compute the asymptotic variance of optimally tuned HMC
+
+Lastly, run plot.hmc.repeats.R to summarize the results
+
+
+

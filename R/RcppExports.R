@@ -13,8 +13,18 @@ gaussian_max_coupling_cholesky <- function(mu1, mu2, Cholesky1, Cholesky2, Chole
     .Call('_debiasedhmc_gaussian_max_coupling_cholesky', PACKAGE = 'debiasedhmc', mu1, mu2, Cholesky1, Cholesky2, Cholesky_inverse1, Cholesky_inverse2)
 }
 
+#' @export
+coxprocess_loglikelihood <- function(x, counts, area) {
+    .Call('_debiasedhmc_coxprocess_loglikelihood', PACKAGE = 'debiasedhmc', x, counts, area)
+}
+
 estimator_bin <- function(c_chains, component, lower, upper, k, K) {
     .Call('_debiasedhmc_estimator_bin', PACKAGE = 'debiasedhmc', c_chains, component, lower, upper, k, K)
+}
+
+#' @export
+gradlognormal <- function(x, mean, precision) {
+    .Call('_debiasedhmc_gradlognormal', PACKAGE = 'debiasedhmc', x, mean, precision)
 }
 
 rinvgaussian_c <- function(n, mu, lambda) {
@@ -49,11 +59,11 @@ dmvnorm_cholesky_inverse <- function(x, mean, cholesky_inverse) {
     .Call('_debiasedhmc_dmvnorm_cholesky_inverse', PACKAGE = 'debiasedhmc', x, mean, cholesky_inverse)
 }
 
-rtmg <- function(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_) {
-    .Call('_debiasedhmc_rtmg', PACKAGE = 'debiasedhmc', n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_)
-}
-
 rtmg_coupled <- function(n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_) {
     .Call('_debiasedhmc_rtmg_coupled', PACKAGE = 'debiasedhmc', n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_)
+}
+
+rtmg <- function(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_) {
+    .Call('_debiasedhmc_rtmg', PACKAGE = 'debiasedhmc', n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_)
 }
 

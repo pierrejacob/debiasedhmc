@@ -1,0 +1,12 @@
+This folder has scripts that implements two examples from Pakman & Paninski (2014):
+a truncated Gaussian constrained by linear constraints (linear.R, plot.linear.R),
+and quadratic constraints (quadratic.R, plot.quadratic.R)
+
+Running either linear.R or quadratic.R performs the computations described in
+Heng and Jacob (2017) and saves the results in the output/ folder as RData files
+
+Running the corresponding plot.linear.R or plot.quadratic.R script then summarizes
+the results
+
+
+

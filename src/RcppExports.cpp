@@ -47,6 +47,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// coxprocess_loglikelihood
+NumericVector coxprocess_loglikelihood(const NumericMatrix& x, const NumericVector& counts, double area);
+RcppExport SEXP _debiasedhmc_coxprocess_loglikelihood(SEXP xSEXP, SEXP countsSEXP, SEXP areaSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type counts(countsSEXP);
+    Rcpp::traits::input_parameter< double >::type area(areaSEXP);
+    rcpp_result_gen = Rcpp::wrap(coxprocess_loglikelihood(x, counts, area));
+    return rcpp_result_gen;
+END_RCPP
+}
 // estimator_bin
 double estimator_bin(List c_chains, int component, double lower, double upper, int k, int K);
 RcppExport SEXP _debiasedhmc_estimator_bin(SEXP c_chainsSEXP, SEXP componentSEXP, SEXP lowerSEXP, SEXP upperSEXP, SEXP kSEXP, SEXP KSEXP) {
@@ -60,6 +73,19 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< int >::type k(kSEXP);
     Rcpp::traits::input_parameter< int >::type K(KSEXP);
     rcpp_result_gen = Rcpp::wrap(estimator_bin(c_chains, component, lower, upper, k, K));
+    return rcpp_result_gen;
+END_RCPP
+}
+// gradlognormal
+NumericVector gradlognormal(const NumericVector& x, const NumericVector& mean, const NumericMatrix& precision);
+RcppExport SEXP _debiasedhmc_gradlognormal(SEXP xSEXP, SEXP meanSEXP, SEXP precisionSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const NumericVector& >::type x(xSEXP);
+    Rcpp::traits::input_parameter< const NumericVector& >::type mean(meanSEXP);
+    Rcpp::traits::input_parameter< const NumericMatrix& >::type precision(precisionSEXP);
+    rcpp_result_gen = Rcpp::wrap(gradlognormal(x, mean, precision));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -170,24 +196,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rtmg
-NumericMatrix rtmg(int n_, int seed_, NumericVector initial_, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
-RcppExport SEXP _debiasedhmc_rtmg(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type n_(n_SEXP);
-    Rcpp::traits::input_parameter< int >::type seed_(seed_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type initial_(initial_SEXP);
-    Rcpp::traits::input_parameter< int >::type numlin_(numlin_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type F_(F_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type g_(g_SEXP);
-    Rcpp::traits::input_parameter< int >::type numquad_(numquad_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type quadratics_(quadratics_SEXP);
-    rcpp_result_gen = Rcpp::wrap(rtmg(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_));
-    return rcpp_result_gen;
-END_RCPP
-}
 // rtmg_coupled
 List rtmg_coupled(int n_, int seed_, NumericVector initial_1, NumericVector initial_2, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
 RcppExport SEXP _debiasedhmc_rtmg_coupled(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_1SEXP, SEXP initial_2SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
@@ -207,12 +215,32 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rtmg
+NumericMatrix rtmg(int n_, int seed_, NumericVector initial_, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
+RcppExport SEXP _debiasedhmc_rtmg(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n_(n_SEXP);
+    Rcpp::traits::input_parameter< int >::type seed_(seed_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type initial_(initial_SEXP);
+    Rcpp::traits::input_parameter< int >::type numlin_(numlin_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type F_(F_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type g_(g_SEXP);
+    Rcpp::traits::input_parameter< int >::type numquad_(numquad_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type quadratics_(quadratics_SEXP);
+    rcpp_result_gen = Rcpp::wrap(rtmg(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_debiasedhmc_logcosh", (DL_FUNC) &_debiasedhmc_logcosh, 1},
     {"_debiasedhmc_gaussian_max_couplingC", (DL_FUNC) &_debiasedhmc_gaussian_max_couplingC, 4},
     {"_debiasedhmc_gaussian_max_coupling_cholesky", (DL_FUNC) &_debiasedhmc_gaussian_max_coupling_cholesky, 6},
+    {"_debiasedhmc_coxprocess_loglikelihood", (DL_FUNC) &_debiasedhmc_coxprocess_loglikelihood, 3},
     {"_debiasedhmc_estimator_bin", (DL_FUNC) &_debiasedhmc_estimator_bin, 6},
+    {"_debiasedhmc_gradlognormal", (DL_FUNC) &_debiasedhmc_gradlognormal, 3},
     {"_debiasedhmc_rinvgaussian_c", (DL_FUNC) &_debiasedhmc_rinvgaussian_c, 3},
     {"_debiasedhmc_rinvgaussian_coupled_c", (DL_FUNC) &_debiasedhmc_rinvgaussian_coupled_c, 4},
     {"_debiasedhmc_logistic_logtarget_c", (DL_FUNC) &_debiasedhmc_logistic_logtarget_c, 4},
@@ -221,8 +249,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_debiasedhmc_rmvnorm_cholesky", (DL_FUNC) &_debiasedhmc_rmvnorm_cholesky, 3},
     {"_debiasedhmc_dmvnorm", (DL_FUNC) &_debiasedhmc_dmvnorm, 3},
     {"_debiasedhmc_dmvnorm_cholesky_inverse", (DL_FUNC) &_debiasedhmc_dmvnorm_cholesky_inverse, 3},
-    {"_debiasedhmc_rtmg", (DL_FUNC) &_debiasedhmc_rtmg, 8},
     {"_debiasedhmc_rtmg_coupled", (DL_FUNC) &_debiasedhmc_rtmg_coupled, 9},
+    {"_debiasedhmc_rtmg", (DL_FUNC) &_debiasedhmc_rtmg, 8},
     {NULL, NULL, 0}
 };
 

@@ -12,34 +12,35 @@
 #' \code{single_kernel}, \code{coupled_kernel}.
 #'@export
 get_mh_kernel <- function(logtarget, Sigma_proposal, dimension){
-  Sigma1_chol <- chol(Sigma_proposal)
-  Sigma1_chol_inv <- solve(chol(Sigma_proposal))
-  Sigma2_chol <- chol(Sigma_proposal)
-  Sigma2_chol_inv <- solve(chol(Sigma_proposal))
+  proposal_std <- sqrt(diag(Sigma_proposal))
+  Sigma1_chol <- diag(proposal_std, dimension, dimension)
+  Sigma1_chol_inv <- diag(1 / proposal_std, dimension, dimension)
   zeromean <- rep(0, dimension)
+
   # single kernel
-  kernel <- function(chain_state, iteration){
+  kernel <- function(chain_state, current_pdf, iteration){
     proposal_value <- chain_state + fast_rmvnorm_chol(1, zeromean, Sigma1_chol)[1,]
     proposal_pdf <- logtarget(proposal_value)
-    current_pdf <- logtarget(chain_state)
     accept <- (log(runif(1)) < (proposal_pdf - current_pdf))
     if (accept){
-      return(list(chain_state = proposal_value))
+      return(list(chain_state = proposal_value, current_pdf = proposal_pdf, accept = accept))
     } else {
-      return(list(chain_state = chain_state))
+      return(list(chain_state = chain_state, current_pdf = current_pdf, accept = accept))
     }
   }
-  coupled_kernel <- function(chain_state1, chain_state2, iteration){
-    distance_ <- mean((chain_state1 - chain_state2)^2)
-    # proposal_value <- gaussian_max_coupling(chain_state1, chain_state2, Sigma_proposal, Sigma_proposal)
+
+  # coupled kernel
+  coupled_kernel <- function(chain_state1, chain_state2, current_pdf1, current_pdf2, iteration){
+    # sample from maximal coupling
     proposal_value <- gaussian_max_coupling_cholesky_R(chain_state1, chain_state2,
-                                                       Sigma1_chol, Sigma2_chol, Sigma1_chol_inv, Sigma2_chol_inv)
+                                                       Sigma1_chol, Sigma1_chol,
+                                                       Sigma1_chol_inv, Sigma1_chol_inv)
     proposal1 <- proposal_value[,1]
     proposal2 <- proposal_value[,2]
+    # overlap <- all(proposal1 == proposal2) # keep track of stuff
     proposal_pdf1 <- logtarget(proposal1)
     proposal_pdf2 <- logtarget(proposal2)
-    current_pdf1 <- logtarget(chain_state1)
-    current_pdf2 <- logtarget(chain_state2)
+
     logu <- log(runif(1))
     accept1 <- FALSE
     accept2 <- FALSE
@@ -51,11 +52,17 @@ get_mh_kernel <- function(logtarget, Sigma_proposal, dimension){
     }
     if (accept1){
       chain_state1 <- proposal1
+      current_pdf1 <- proposal_pdf1
     }
     if (accept2){
       chain_state2 <- proposal2
+      current_pdf2 <- proposal_pdf2
     }
-    return(list(chain_state1 = chain_state1, chain_state2 = chain_state2))
+    return(list(chain_state1 = chain_state1, chain_state2 = chain_state2,
+                current_pdf1 = current_pdf1, current_pdf2 = current_pdf2,
+                accept1 = accept1, accept2 = accept2))
+                # overlap = overlap))
   }
+
   return(list(kernel = kernel, coupled_kernel = coupled_kernel))
 }

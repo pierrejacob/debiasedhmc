@@ -4,19 +4,21 @@
 \alias{coupled_chains}
 \title{Coupled MCMC chains}
 \usage{
-coupled_chains(single_kernel, coupled_kernel, rinit, K = 1,
+coupled_chains(logtarget, single_kernel, coupled_kernel, rinit, m = 1,
   max_iterations = Inf, preallocate = 10)
 }
 \arguments{
-\item{single_kernel}{function taking a state (in a vector) and an iteration, and returning
-a list with a key named \code{chain_state} and containing the next state.}
+\item{logtarget}{function evaluating the log target density}
 
-\item{coupled_kernel}{function taking two states (in two vectors) and an iteration,
-and returning a list with keys \code{chain_state1} and \code{chain_state2}.}
+\item{single_kernel}{function taking a state (in a vector), its log density and an iteration, and returning
+a list with a key named \code{chain_state} containing the next state and its log density \code{current_pdf}.}
+
+\item{coupled_kernel}{function taking two states (in two vectors), their log densities and an iteration,
+and returning a list with keys \code{chain_state1}, \code{chain_state2}, \code{current_pdf1} and \code{current_pdf2}.}
 
 \item{rinit}{function taking no arguments are returning an initial state for a Markov chain.}
 
-\item{K}{number of iterations desired (will be proportional to the computing cost if meeting occurs before \code{K},
+\item{m}{number of iterations desired (will be proportional to the computing cost if meeting occurs before \code{m},
 default to 1).}
 
 \item{max_iterations}{number of iterations at which the function stops if it is still running  (default to Inf).}
@@ -25,7 +27,7 @@ default to 1).}
 }
 \description{
 Sample two MCMC chains, each following \code{single_kernel} marginally,
-and \code{coupled_kernel} jointly, until min(max(tau, K), max_iterations), where tau
+and \code{coupled_kernel} jointly, until min(max(tau, m), max_iterations), where tau
 is the first time at which the two chains meet (i.e. take the same value exactly).
 Or more precisely, they meet with a delay of one, i.e. X_t = Y_{t-1}. The chains
 are initialized from the distribution provided in \code{rinit}.
