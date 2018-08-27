@@ -7,7 +7,6 @@ library(gridExtra)
 setmytheme()
 registerDoParallel(cores = detectCores()-2)
 set.seed(1)
-setwd("~/Dropbox/JH-PJ/UHMC/numericalresults/")
 
 load("banana.synchr.meetings.RData")
 
