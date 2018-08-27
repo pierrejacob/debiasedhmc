@@ -3,7 +3,7 @@
 #'@description Defines a multivariate Normal target
 #' with prescribed dimension, mean, variance.
 #'@param dimension dimension of the target
-#'@param mu1 mean
+#'@param mean_target mean
 #'@param Sigma_target variance
 #'@return list with keys \code{logtarget} and \code{gradlogtarget},
 #'ready to be used e.g. in \code{\link{get_hmc_kernel}}.

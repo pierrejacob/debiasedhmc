@@ -2,9 +2,9 @@ Package: debiasedhmc
 Type: Package
 Title: Unbiased Hamiltonian Monte Carlo with couplings
 Version: 0.1.0
-Author: Pierre E. Jacob
+Author: Pierre E. Jacob, Jeremy Heng
 Maintainer: Pierre E. Jacob <pjacob@fas.harvard.edu>
-Description: This package contains scripts illustrating how the bias of HMC can be removed using couplings
+Description: This package contains scripts illustrating how the bias of HMC can be removed using couplings. It accompanies the technical report arxiv.org/abs/1709.00404.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
@@ -13,4 +13,4 @@ Depends:
 Imports:
     Rcpp (>= 0.11.6),RcppEigen
 LinkingTo: Rcpp,RcppEigen
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

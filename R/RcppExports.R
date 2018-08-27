@@ -59,11 +59,11 @@ dmvnorm_cholesky_inverse <- function(x, mean, cholesky_inverse) {
     .Call('_debiasedhmc_dmvnorm_cholesky_inverse', PACKAGE = 'debiasedhmc', x, mean, cholesky_inverse)
 }
 
-rtmg_coupled <- function(n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_) {
-    .Call('_debiasedhmc_rtmg_coupled', PACKAGE = 'debiasedhmc', n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_)
-}
-
 rtmg <- function(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_) {
     .Call('_debiasedhmc_rtmg', PACKAGE = 'debiasedhmc', n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_)
+}
+
+rtmg_coupled <- function(n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_) {
+    .Call('_debiasedhmc_rtmg_coupled', PACKAGE = 'debiasedhmc', n_, seed_, initial_1, initial_2, numlin_, F_, g_, numquad_, quadratics_)
 }
 

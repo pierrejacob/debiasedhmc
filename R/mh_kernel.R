@@ -61,7 +61,6 @@ get_mh_kernel <- function(logtarget, Sigma_proposal, dimension){
     return(list(chain_state1 = chain_state1, chain_state2 = chain_state2,
                 current_pdf1 = current_pdf1, current_pdf2 = current_pdf2,
                 accept1 = accept1, accept2 = accept2))
-                # overlap = overlap))
   }
 
   return(list(kernel = kernel, coupled_kernel = coupled_kernel))

@@ -25,11 +25,6 @@
 #'@export
 coupled_chains <- function(logtarget, single_kernel, coupled_kernel, rinit, m = 1, max_iterations = Inf, preallocate = 10){
   # keep track of stuff
-  # logical_rwmh <- logical(max_iterations) # if RWMH component was sampled
-  # logical_accept1 <- logical(max_iterations) # if chain 1 accepts proposal
-  # logical_accept2 <- logical(max_iterations) # if chain 2 accepts proposal
-  # logical_overlap <- logical(max_iterations) # if RWMH component sampled and maximal coupling samples from overlap
-
   # initialize
   chain_state1 <- rinit()
   chain_state2 <- rinit()
@@ -66,12 +61,6 @@ coupled_chains <- function(logtarget, single_kernel, coupled_kernel, rinit, m = 
       current_pdf1 <- res_single_kernel$current_pdf
       chain_state2 <- chain_state1
       current_pdf2 <- current_pdf1
-
-      # keep track of stuff
-      # logical_rwmh[iter] <- res_single_kernel$rwmh
-      # logical_accept1[iter] <- res_single_kernel$accept
-      # logical_accept2[iter] <- res_single_kernel$accept
-
     } else {
       # use coupled kernel
       res_coupled_kernel <- coupled_kernel(chain_state1, chain_state2, current_pdf1, current_pdf2, iter)
@@ -79,12 +68,6 @@ coupled_chains <- function(logtarget, single_kernel, coupled_kernel, rinit, m = 
       chain_state2 <- res_coupled_kernel$chain_state2
       current_pdf1 <- res_coupled_kernel$current_pdf1
       current_pdf2 <- res_coupled_kernel$current_pdf2
-
-      # keep track of stuff
-      # logical_rwmh[iter] <- res_coupled_kernel$rwmh
-      # logical_accept1[iter] <- res_coupled_kernel$accept1
-      # logical_accept2[iter] <- res_coupled_kernel$accept2
-      # logical_overlap[iter] <- res_coupled_kernel$overlap
 
       # check if meeting happens
       if (all(chain_state1 == chain_state2) && !meet){
@@ -96,7 +79,6 @@ coupled_chains <- function(logtarget, single_kernel, coupled_kernel, rinit, m = 
 
     # store coupled chains
     if ((current_nsamples1+1) > nrowsamples1){
-      # print('increase nrow')
       new_rows <- nrowsamples1 - 1
       nrowsamples1 <- nrowsamples1 + new_rows
       samples1 <- rbind(samples1, matrix(NA, nrow = new_rows, ncol = p))
@@ -117,19 +99,15 @@ coupled_chains <- function(logtarget, single_kernel, coupled_kernel, rinit, m = 
   samples2 <- samples2[1:(current_nsamples1-1),,drop=F]
   return(list(samples1 = samples1, samples2 = samples2,
               meetingtime = meetingtime, iteration = iter, finished = finished))
-              # logical_rwmh = logical_rwmh, logical_accept1 = logical_accept1,
-              # logical_accept2 = logical_accept2, logical_overlap = logical_overlap))
-
 }
 
 # Compute unbiased estimator using output of coupled_chains
 #'@rdname H_bar
 #'@title Compute unbiased estimators from coupled chains
-#'@description Compute the proposed unbiased estimators, for each of the element
-#'in the list 'c_chains'. The integral of interest is that of the function h,
-#'which can be multivariate. The estimator uses the variance reduction technique
-#'whereby the estimator is the MCMC average between times k and m, with probability
-#'going to one as k increases.
+#'@description Compute the proposed unbiased estimators given the output
+#'of the 'coupled_chains' function. The integral of interest is that of the function h,
+#'which can be multivariate. The choice of k and m must be such that m is at most the choice
+#'made when running coupled_chains, and k must be less than m.
 #'@export
 H_bar <- function(c_chains, h = function(x) x, k = 0, m = 1){
   maxiter <- c_chains$iteration
@@ -166,7 +144,7 @@ H_bar <- function(c_chains, h = function(x) x, k = 0, m = 1){
 }
 
 # Run coupled chains until max(tau, m), where tau is the meeting time and m specified by user,
-# and compute H_bar estimator simultaneously
+# and compute H_bar estimator simultaneously, without storing the chains
 #'@rdname unbiased_estimator
 #'@title Unbiased estimator
 #'@description Sample two MCMC chains, each following \code{single_kernel} marginally,

@@ -196,6 +196,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// rtmg
+NumericMatrix rtmg(int n_, int seed_, NumericVector initial_, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
+RcppExport SEXP _debiasedhmc_rtmg(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< int >::type n_(n_SEXP);
+    Rcpp::traits::input_parameter< int >::type seed_(seed_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type initial_(initial_SEXP);
+    Rcpp::traits::input_parameter< int >::type numlin_(numlin_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type F_(F_SEXP);
+    Rcpp::traits::input_parameter< NumericVector >::type g_(g_SEXP);
+    Rcpp::traits::input_parameter< int >::type numquad_(numquad_SEXP);
+    Rcpp::traits::input_parameter< NumericMatrix >::type quadratics_(quadratics_SEXP);
+    rcpp_result_gen = Rcpp::wrap(rtmg(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_));
+    return rcpp_result_gen;
+END_RCPP
+}
 // rtmg_coupled
 List rtmg_coupled(int n_, int seed_, NumericVector initial_1, NumericVector initial_2, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
 RcppExport SEXP _debiasedhmc_rtmg_coupled(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_1SEXP, SEXP initial_2SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
@@ -215,24 +233,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// rtmg
-NumericMatrix rtmg(int n_, int seed_, NumericVector initial_, int numlin_, NumericMatrix F_, NumericVector g_, int numquad_, NumericMatrix quadratics_);
-RcppExport SEXP _debiasedhmc_rtmg(SEXP n_SEXP, SEXP seed_SEXP, SEXP initial_SEXP, SEXP numlin_SEXP, SEXP F_SEXP, SEXP g_SEXP, SEXP numquad_SEXP, SEXP quadratics_SEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< int >::type n_(n_SEXP);
-    Rcpp::traits::input_parameter< int >::type seed_(seed_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type initial_(initial_SEXP);
-    Rcpp::traits::input_parameter< int >::type numlin_(numlin_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type F_(F_SEXP);
-    Rcpp::traits::input_parameter< NumericVector >::type g_(g_SEXP);
-    Rcpp::traits::input_parameter< int >::type numquad_(numquad_SEXP);
-    Rcpp::traits::input_parameter< NumericMatrix >::type quadratics_(quadratics_SEXP);
-    rcpp_result_gen = Rcpp::wrap(rtmg(n_, seed_, initial_, numlin_, F_, g_, numquad_, quadratics_));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_debiasedhmc_logcosh", (DL_FUNC) &_debiasedhmc_logcosh, 1},
@@ -249,8 +249,8 @@ static const R_CallMethodDef CallEntries[] = {
     {"_debiasedhmc_rmvnorm_cholesky", (DL_FUNC) &_debiasedhmc_rmvnorm_cholesky, 3},
     {"_debiasedhmc_dmvnorm", (DL_FUNC) &_debiasedhmc_dmvnorm, 3},
     {"_debiasedhmc_dmvnorm_cholesky_inverse", (DL_FUNC) &_debiasedhmc_dmvnorm_cholesky_inverse, 3},
-    {"_debiasedhmc_rtmg_coupled", (DL_FUNC) &_debiasedhmc_rtmg_coupled, 9},
     {"_debiasedhmc_rtmg", (DL_FUNC) &_debiasedhmc_rtmg, 8},
+    {"_debiasedhmc_rtmg_coupled", (DL_FUNC) &_debiasedhmc_rtmg_coupled, 9},
     {NULL, NULL, 0}
 };
 

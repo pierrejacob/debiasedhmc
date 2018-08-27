@@ -9,9 +9,9 @@ get_mvnormal(dimension, mean_target, Sigma_target)
 \arguments{
 \item{dimension}{dimension of the target}
 
-\item{Sigma_target}{variance}
+\item{mean_target}{mean}
 
-\item{mu1}{mean}
+\item{Sigma_target}{variance}
 }
 \value{
 list with keys \code{logtarget} and \code{gradlogtarget},

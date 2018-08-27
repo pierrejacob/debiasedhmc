@@ -7,9 +7,8 @@
 H_bar(c_chains, h = function(x) x, k = 0, m = 1)
 }
 \description{
-Compute the proposed unbiased estimators, for each of the element
-in the list 'c_chains'. The integral of interest is that of the function h,
-which can be multivariate. The estimator uses the variance reduction technique
-whereby the estimator is the MCMC average between times k and m, with probability
-going to one as k increases.
+Compute the proposed unbiased estimators given the output
+of the 'coupled_chains' function. The integral of interest is that of the function h,
+which can be multivariate. The choice of k and m must be such that m is at most the choice
+made when running coupled_chains, and k must be less than m.
 }
